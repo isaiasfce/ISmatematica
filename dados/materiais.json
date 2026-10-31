@@ -1,0 +1,30 @@
+
+[
+  {
+    "id": 1,
+    "titulo": "Função Afim",
+    "serie": "1º ano",
+    "assunto": "Funções",
+    "descricao": "Lista de exercícios sobre função afim, gráficos e aplicações.",
+    "tipo": "Lista de exercícios",
+    "link": ""
+  },
+  {
+    "id": 2,
+    "titulo": "Equação do 2º Grau",
+    "serie": "9º ano",
+    "assunto": "Álgebra",
+    "descricao": "Atividades envolvendo equações completas e incompletas.",
+    "tipo": "Lista de exercícios",
+    "link": ""
+  },
+  {
+    "id": 3,
+    "titulo": "Geometria Plana",
+    "serie": "2º ano",
+    "assunto": "Geometria",
+    "descricao": "Exercícios sobre áreas e perímetros de figuras planas.",
+    "tipo": "Lista de exercícios",
+    "link": ""
+  }
+]
