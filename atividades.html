@@ -1,0 +1,338 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atividades | IS Matemática</title>
+
+  <style>
+    :root {
+      --texto: #1c2430;
+      --secundario: #64748b;
+      --borda: #e5e7eb;
+      --fundo: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: var(--texto);
+      background: var(--fundo);
+      line-height: 1.6;
+    }
+
+    header {
+      border-bottom: 1px solid var(--borda);
+    }
+
+    .barra {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .marca {
+      color: var(--texto);
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    nav { display: flex; gap: 22px; flex-wrap: wrap; }
+
+    nav a {
+      color: var(--secundario);
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a:hover, nav a.ativo {
+      color: var(--texto);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 60px 24px 100px;
+    }
+
+    h1 {
+      font-size: clamp(34px, 5vw, 48px);
+      letter-spacing: -1.5px;
+      margin: 0 0 12px;
+    }
+
+    .introducao {
+      color: var(--secundario);
+      margin: 0 0 36px;
+    }
+
+    .filtros {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 16px;
+      margin-bottom: 25px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid var(--borda);
+      border-radius: 8px;
+      background: white;
+      color: var(--texto);
+      font: inherit;
+    }
+
+    .contador {
+      color: var(--secundario);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .grade {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .cartao {
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .categoria {
+      font-size: 12px;
+      color: var(--secundario);
+    }
+
+    .cartao h2 {
+      font-size: 21px;
+      margin: 12px 0;
+    }
+
+    .cartao p {
+      color: var(--secundario);
+      font-size: 14px;
+      flex-grow: 1;
+    }
+
+    .botao {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--texto);
+      border: 1px solid var(--borda);
+      border-radius: 7px;
+      padding: 10px 14px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    .botao:hover { background: #f1f5f9; }
+
+    .indisponivel {
+      background: #f8fafc;
+      color: #94a3b8;
+      cursor: not-allowed;
+    }
+
+    footer {
+      border-top: 1px solid var(--borda);
+      padding: 30px;
+      text-align: center;
+      color: var(--secundario);
+      font-size: 13px;
+    }
+
+    @media (max-width: 800px) {
+      .grade { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .grade, .filtros { grid-template-columns: 1fr; }
+      main { padding-top: 35px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="barra">
+      <a class="marca" href="index.html">IS Matemática.</a>
+
+      <nav aria-label="Menu principal">
+        <a href="index.html">Início</a>
+        <a href="enem.html">ENEM</a>
+        <a href="atividades.html" class="ativo">Atividades</a>
+        <a href="projetos.html">Projetos</a>
+        <a href="index.html#sobre">Sobre</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1>Biblioteca de atividades</h1>
+    <p class="introducao">
+      Explore listas de exercícios e materiais
+      organizados por série e assunto.
+    </p>
+
+    <div class="filtros">
+      <input id="pesquisa" type="search"
+             placeholder="Pesquisar atividade..."
+             aria-label="Pesquisar atividades">
+
+      <select id="serie" aria-label="Filtrar por série">
+        <option value="">Todas as séries</option>
+      </select>
+    </div>
+
+    <p class="contador" id="contador" aria-live="polite">
+      Carregando atividades...
+    </p>
+
+    <div id="lista" class="grade"></div>
+  </main>
+
+  <footer>
+    IS Matemática — Compartilhando conhecimento.
+  </footer>
+
+  <script>
+    let materiais = [];
+
+    const lista = document.getElementById("lista");
+    const pesquisa = document.getElementById("pesquisa");
+    const serie = document.getElementById("serie");
+    const contador = document.getElementById("contador");
+
+    function criarElemento(tag, classe, texto) {
+      const elemento = document.createElement(tag);
+      if (classe) elemento.className = classe;
+      if (texto !== undefined) elemento.textContent = texto;
+      return elemento;
+    }
+
+    function mostrarAtividades() {
+      const busca = pesquisa.value.toLocaleLowerCase("pt-BR");
+      const serieEscolhida = serie.value;
+
+      const filtrados = materiais.filter(item => {
+        const texto = [
+          item.titulo,
+          item.assunto,
+          item.descricao,
+          item.tipo
+        ].join(" ").toLocaleLowerCase("pt-BR");
+
+        return texto.includes(busca) &&
+          (!serieEscolhida || item.serie === serieEscolhida);
+      });
+
+      lista.replaceChildren();
+
+      contador.textContent =
+        `${filtrados.length} atividade(s) encontrada(s)`;
+
+      if (filtrados.length === 0) {
+        lista.appendChild(
+          criarElemento("p", "", "Nenhuma atividade encontrada.")
+        );
+        return;
+      }
+
+      filtrados.forEach(item => {
+        const cartao = criarElemento("article", "cartao");
+
+        cartao.appendChild(
+          criarElemento(
+            "span", "categoria",
+            `${item.serie} • ${item.assunto}`
+          )
+        );
+
+        cartao.appendChild(
+          criarElemento("h2", "", item.titulo)
+        );
+
+        cartao.appendChild(
+          criarElemento("p", "", item.descricao)
+        );
+
+        if (item.link &&
+            /^https:\/\/drive\.google\.com\//.test(item.link)) {
+          const botao = criarElemento(
+            "a", "botao", "Visualizar material ↗"
+          );
+          botao.href = item.link;
+          botao.target = "_blank";
+          botao.rel = "noopener noreferrer";
+          cartao.appendChild(botao);
+        } else {
+          cartao.appendChild(
+            criarElemento(
+              "span", "botao indisponivel",
+              "Material em preparação"
+            )
+          );
+        }
+
+        lista.appendChild(cartao);
+      });
+    }
+
+    async function carregarAtividades() {
+      try {
+        const resposta = await fetch("dados/materiais.json");
+
+        if (!resposta.ok) {
+          throw new Error("Arquivo não encontrado");
+        }
+
+        const dados = await resposta.json();
+
+        if (!Array.isArray(dados)) {
+          throw new Error("Formato inválido");
+        }
+
+        materiais = dados;
+
+        const series = [...new Set(
+          materiais.map(item => item.serie).filter(Boolean)
+        )].sort((a, b) => a.localeCompare(b, "pt-BR"));
+
+        series.forEach(nome => {
+          const opcao = document.createElement("option");
+          opcao.value = nome;
+          opcao.textContent = nome;
+          serie.appendChild(opcao);
+        });
+
+        mostrarAtividades();
+      } catch (erro) {
+        contador.textContent =
+          "Não foi possível carregar as atividades.";
+        console.error(erro);
+      }
+    }
+
+    pesquisa.addEventListener("input", mostrarAtividades);
+    serie.addEventListener("change", mostrarAtividades);
+
+    carregarAtividades();
+  </script>
+</body>
+</html>
