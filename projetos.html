@@ -1,0 +1,460 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+        content="Projetos pedagógicos e sequências didáticas do IS Matemática.">
+
+  <title>Projetos | IS Matemática</title>
+
+  <style>
+    :root {
+      --texto: #1c2430;
+      --secundario: #64748b;
+      --borda: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      color: var(--texto);
+      line-height: 1.6;
+    }
+
+    header {
+      border-bottom: 1px solid var(--borda);
+    }
+
+    .barra {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .marca {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--texto);
+      text-decoration: none;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+    }
+
+    nav a {
+      font-size: 14px;
+      text-decoration: none;
+      color: var(--secundario);
+    }
+
+    nav a:hover,
+    nav a.ativo {
+      color: var(--texto);
+    }
+
+    nav a.ativo {
+      font-weight: bold;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 60px 24px 100px;
+    }
+
+    .etiqueta {
+      color: var(--secundario);
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(34px, 5vw, 48px);
+      letter-spacing: -1.5px;
+      line-height: 1.2;
+      margin: 16px 0;
+    }
+
+    .introducao {
+      color: var(--secundario);
+      max-width: 660px;
+      margin-bottom: 40px;
+    }
+
+    .filtros {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 14px;
+      font: inherit;
+      color: var(--texto);
+      background: white;
+      border: 1px solid var(--borda);
+      border-radius: 8px;
+    }
+
+    input:focus,
+    select:focus {
+      outline: 2px solid #64748b;
+      outline-offset: 2px;
+    }
+
+    .contador {
+      color: var(--secundario);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .grade {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .cartao {
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+      padding: 25px;
+    }
+
+    .metadados {
+      color: var(--secundario);
+      font-size: 12px;
+    }
+
+    .cartao h2 {
+      font-size: 21px;
+      margin: 12px 0;
+    }
+
+    .cartao p {
+      color: var(--secundario);
+      font-size: 14px;
+    }
+
+    .link-projeto {
+      display: inline-block;
+      margin-top: 12px;
+      color: var(--texto);
+      font-size: 14px;
+      font-weight: bold;
+      text-decoration: none;
+      border-bottom: 1px solid var(--borda);
+    }
+
+    .vazio {
+      border: 1px dashed var(--borda);
+      border-radius: 12px;
+      text-align: center;
+      padding: 65px 20px;
+    }
+
+    .vazio h2 {
+      margin: 0 0 10px;
+      font-size: 20px;
+    }
+
+    .vazio p {
+      color: var(--secundario);
+      max-width: 450px;
+      margin: auto;
+    }
+
+    footer {
+      border-top: 1px solid var(--borda);
+      text-align: center;
+      color: var(--secundario);
+      padding: 30px 24px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 650px) {
+      main {
+        padding-top: 35px;
+      }
+
+      .filtros,
+      .grade {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="barra">
+    <a href="index.html" class="marca">
+      IS Matemática.
+    </a>
+
+    <nav aria-label="Menu principal">
+      <a href="index.html">Início</a>
+      <a href="enem.html">ENEM</a>
+      <a href="atividades.html">Atividades</a>
+      <a href="projetos.html" class="ativo"
+         aria-current="page">Projetos</a>
+      <a href="index.html#sobre">Sobre</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section>
+    <div class="etiqueta">Práticas pedagógicas</div>
+
+    <h1>Projetos para a sala de aula</h1>
+
+    <p class="introducao">
+      Um espaço dedicado ao compartilhamento
+      de projetos pedagógicos, sequências
+      didáticas, planejamentos e experiências
+      voltadas ao ensino de Matemática.
+    </p>
+  </section>
+
+  <section aria-label="Pesquisa de projetos">
+    <div class="filtros">
+
+      <div>
+        <label for="pesquisa">Pesquisar projeto</label>
+        <input
+          type="search"
+          id="pesquisa"
+          placeholder="Digite um título ou assunto..."
+        >
+      </div>
+
+      <div>
+        <label for="categoria">Categoria</label>
+        <select id="categoria">
+          <option value="">Todas as categorias</option>
+          <option value="Projeto didático">
+            Projeto didático
+          </option>
+          <option value="Sequência didática">
+            Sequência didática
+          </option>
+          <option value="Plano de aula">
+            Plano de aula
+          </option>
+          <option value="Relato de experiência">
+            Relato de experiência
+          </option>
+        </select>
+      </div>
+
+    </div>
+  </section>
+
+  <section aria-label="Resultados dos projetos">
+    <p class="contador" id="contador"
+       aria-live="polite">
+      Carregando projetos...
+    </p>
+
+    <div id="resultados"></div>
+  </section>
+
+</main>
+
+<footer>
+  IS Matemática — Compartilhando conhecimento.
+</footer>
+
+<script>
+  let projetos = [];
+
+  const pesquisa = document.getElementById("pesquisa");
+  const categoria = document.getElementById("categoria");
+  const resultados = document.getElementById("resultados");
+  const contador = document.getElementById("contador");
+
+  function criarElemento(tag, classe, texto) {
+    const elemento = document.createElement(tag);
+
+    if (classe) elemento.className = classe;
+
+    if (texto !== undefined) {
+      elemento.textContent = texto;
+    }
+
+    return elemento;
+  }
+
+  function mostrarMensagem(titulo, descricao) {
+    const caixa = criarElemento("div", "vazio");
+
+    caixa.appendChild(
+      criarElemento("h2", "", titulo)
+    );
+
+    caixa.appendChild(
+      criarElemento("p", "", descricao)
+    );
+
+    resultados.replaceChildren(caixa);
+  }
+
+  function mostrarProjetos() {
+    const termo = pesquisa.value
+      .toLocaleLowerCase("pt-BR")
+      .trim();
+
+    const categoriaEscolhida = categoria.value;
+
+    const filtrados = projetos.filter(projeto => {
+      const texto = [
+        projeto.titulo,
+        projeto.descricao,
+        projeto.assunto,
+        projeto.publico
+      ].join(" ").toLocaleLowerCase("pt-BR");
+
+      const correspondeBusca = texto.includes(termo);
+
+      const correspondeCategoria =
+        !categoriaEscolhida ||
+        projeto.categoria === categoriaEscolhida;
+
+      return correspondeBusca && correspondeCategoria;
+    });
+
+    contador.textContent =
+      `${filtrados.length} projeto(s) encontrado(s)`;
+
+    resultados.replaceChildren();
+
+    if (projetos.length === 0) {
+      mostrarMensagem(
+        "Projetos em preparação",
+        "Em breve, este espaço reunirá projetos, sequências didáticas e propostas para o ensino de Matemática."
+      );
+      return;
+    }
+
+    if (filtrados.length === 0) {
+      mostrarMensagem(
+        "Nenhum projeto encontrado",
+        "Experimente pesquisar outro assunto ou selecionar uma categoria diferente."
+      );
+      return;
+    }
+
+    const grade = criarElemento("div", "grade");
+
+    filtrados.forEach(projeto => {
+      const cartao = criarElemento("article", "cartao");
+
+      cartao.appendChild(
+        criarElemento(
+          "div",
+          "metadados",
+          `${projeto.categoria || "Projeto"} • ${projeto.publico || "Educação"}`
+        )
+      );
+
+      cartao.appendChild(
+        criarElemento("h2", "", projeto.titulo)
+      );
+
+      cartao.appendChild(
+        criarElemento("p", "", projeto.descricao)
+      );
+
+      if (
+        typeof projeto.link === "string" &&
+        /^https:\/\/(drive\.google\.com|docs\.google\.com)\//.test(
+          projeto.link
+        )
+      ) {
+        const link = criarElemento(
+          "a",
+          "link-projeto",
+          "Visualizar projeto ↗"
+        );
+
+        link.href = projeto.link;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+
+        cartao.appendChild(link);
+      }
+
+      grade.appendChild(cartao);
+    });
+
+    resultados.appendChild(grade);
+  }
+
+  async function carregarProjetos() {
+    try {
+      const resposta = await fetch("dados/projetos.json");
+
+      if (!resposta.ok) {
+        throw new Error("Arquivo de projetos não encontrado.");
+      }
+
+      const dados = await resposta.json();
+
+      if (!Array.isArray(dados)) {
+        throw new Error("Formato de dados inválido.");
+      }
+
+      projetos = dados;
+      mostrarProjetos();
+
+    } catch (erro) {
+      contador.textContent =
+        "Não foi possível carregar os projetos.";
+
+      mostrarMensagem(
+        "Erro ao carregar os projetos",
+        "Verifique se o arquivo dados/projetos.json existe."
+      );
+
+      console.error(erro);
+    }
+  }
+
+  pesquisa.addEventListener("input", mostrarProjetos);
+  categoria.addEventListener("change", mostrarProjetos);
+
+  carregarProjetos();
+</script>
+
+</body>
+</html>
